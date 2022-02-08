@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 643755525}
   - component: {fileID: 643755524}
   - component: {fileID: 643755527}
+  - component: {fileID: 643755528}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: LeftSaber
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,10 +166,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643755522}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.1, z: 3}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &643755525
 MeshRenderer:
@@ -235,6 +236,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &643755528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643755522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98eb35517bfea1a45ac9c3497efe83d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,9 +534,10 @@ GameObject:
   - component: {fileID: 1026248499}
   - component: {fileID: 1026248498}
   - component: {fileID: 1026248501}
+  - component: {fileID: 1026248502}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: RightSaber
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,10 +564,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026248496}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.1, z: 3}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1026248499
 MeshRenderer:
@@ -620,6 +634,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1026248502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026248496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98eb35517bfea1a45ac9c3497efe83d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1026368686
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d08313e692ea43b33b92ce8407caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabCube: {fileID: 6962126145122131508, guid: 0caf3c122f8cd4048b1140b790536050, type: 3}
+  PrefabCube: {fileID: 4881685933643667786, guid: d18b62d5167f4ef49b9b0975f552c3a0, type: 3}
   TransformCube: {fileID: 777794000}
   SpawnAction: {fileID: 7485393094814163192, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1026368688

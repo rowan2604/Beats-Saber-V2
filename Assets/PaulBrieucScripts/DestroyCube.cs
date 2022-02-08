@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class DestroyCube : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider collider)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collider.CompareTag("Cube"))
+            Destroy(collider.gameObject);
     }
 }
