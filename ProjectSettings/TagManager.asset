@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Saber
   - Cube
+  - WrongSurface
+  - CorrectSurface
   layers:
   - Default
   - TransparentFX
