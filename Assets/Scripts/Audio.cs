@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Audio : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Audio : MonoBehaviour
     [SerializeField]
     private Transform _playerTransform;
 
+
+    private AudioInputAction _audioInputAction;
     private float _musicSpeed;
     private AudioSource _audioSource;
     private Transform _startPosition;
@@ -21,6 +24,7 @@ public class Audio : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _audioInputAction = new AudioInputAction();
     }
 
     private void Start()
@@ -29,44 +33,63 @@ public class Audio : MonoBehaviour
         _audioSource.clip = _audioClip;
     }
 
-    private void ManageMusic()
+    private void OnEnable()
+    {
+
+        _audioInputAction.Audio.Pause.performed += Pause;
+        _audioInputAction.Audio.Pause.Enable();
+
+        _audioInputAction.Audio.Play.performed += Play;
+        _audioInputAction.Audio.Play.Enable();
+
+    }
+
+    private void OnDisable()
+    {
+        _audioInputAction.Audio.Play.Disable();
+        _audioInputAction.Audio.Pause.Disable();
+    }
+    public void Play(InputAction.CallbackContext context)
     {
         if (_isPlaying)
-            StopMusic();
-        else if (_inPause)
-            _audioSource.UnPause();
+        {
+
+            _audioSource.Stop();
+            _isPlaying = false;
+
+        }
         else
-            LauchMusic();
+        {
+
+            float time;
+            _isPlaying = true;
+            time = _musicSpeed / (_playerTransform.position.z - _startPosition.position.z);
+            _audioSource.time = time - _offset;
+            _audioSource.Play();
+
+        }
     }
 
-    private void LauchMusic()
-    {
-        float time;
-        _isPlaying = true;
-        time = _musicSpeed / (_playerTransform.position.z - _startPosition.position.z);
-        _audioSource.time = time - _offset;
-        _audioSource.Play();
-    }
 
-    private void StopMusic()
+    public void Pause(InputAction.CallbackContext context)
     {
-        _audioSource.Stop();
-        _isPlaying = false;
-    }
-
-    private void PauseMusic()
-    {
+        Debug.Log("FDP");
         if (_isPlaying && !_inPause)
         {
+
             _audioSource.Pause();
             _inPause = true;
             _isPlaying = false;
-        }           
-        else
+
+        }
+        else if (_inPause)
         {
+
             _audioSource.UnPause();
             _inPause = false;
+            _isPlaying = true;
+
         }
-            
     }
+
 }
