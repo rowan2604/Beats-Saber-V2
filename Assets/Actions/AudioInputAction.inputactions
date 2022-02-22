@@ -1,0 +1,54 @@
+{
+    "name": "AudioInputAction",
+    "maps": [
+        {
+            "name": "Audio",
+            "id": "656181df-e416-4666-b326-9be41a04adc5",
+            "actions": [
+                {
+                    "name": "Play",
+                    "type": "Value",
+                    "id": "e0f3ec7c-3831-4b9d-9f05-d626c5cc5900",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pause",
+                    "type": "Value",
+                    "id": "26f3e7f2-4220-4188-bb83-390ca6cfcf84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a019efd7-5103-4b11-aa79-ba4b54a33611",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Play",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9f2a5dc-c0a6-4861-9608-37bea2a444f6",
+                    "path": "<Keyboard>/#(Z)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
