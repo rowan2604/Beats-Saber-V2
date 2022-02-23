@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _offset: 2
-  _audioClip: {fileID: 8300000, guid: 4dbbe7b213b575c48b17331f6554de71, type: 3}
+  _audioClip: {fileID: 8300000, guid: a7e9bf455f8a2764c833f89255bcf6e3, type: 3}
   _playerTransform: {fileID: 0}
 --- !u!114 &6075182056472314418
 MonoBehaviour:

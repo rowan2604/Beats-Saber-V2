@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CubePlacement : MonoBehaviour
 {
     [SerializeField] private Transform grid;
     [SerializeField] private Transform rightHandTransform;
+    [SerializeField] private GameObject PrefabCube;
+    [SerializeField] private Transform TransformCube;
 
     private Plane gridPlane;
     private float enter;
     private Ray ray;
-    // Start is called before the first frame update
+
+    private InputActionReference SpawnAction;
+
     void Start()
     {
+        SpawnAction.action.Enable();
+        SpawnAction.action.performed += SpawnACube;
         gridPlane = new Plane(Vector3.back, grid.transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
         ray = new Ray(rightHandTransform.position, rightHandTransform.forward);
@@ -25,6 +31,10 @@ public class CubePlacement : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             GetNearestPoint(hitPoint);
         }
+    }
+    void SpawnACube(InputAction.CallbackContext ctx)
+    {
+        Instantiate(PrefabCube, TransformCube.position, Quaternion.identity);
     }
 
     private Transform GetNearestPoint(Vector3 origin)
