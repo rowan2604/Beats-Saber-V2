@@ -3532,6 +3532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio
       objectReference: {fileID: 0}
+    - target: {fileID: 5978842092074428884, guid: 4f4e2679546a43e4f80309021485c5ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6113130539880984089, guid: 4f4e2679546a43e4f80309021485c5ca, type: 3}
       propertyPath: _audioClip
       value: 
@@ -4293,8 +4297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 900340088}
   rightHandTransform: {fileID: 2049900423}
-  PrefabCube: {fileID: 0}
-  TransformCube: {fileID: 0}
+  PrefabCube: {fileID: 7252321186869512449, guid: cdcaa94115617834b86ed487573ee13b, type: 3}
+  TransformCube: {fileID: 900340088}
 --- !u!4 &1848828506
 Transform:
   m_ObjectHideFlags: 0
