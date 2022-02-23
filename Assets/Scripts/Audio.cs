@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,15 @@ public class Audio : MonoBehaviour
     [SerializeField]
     private AudioClip _audioClip;
     [SerializeField]
-    private Transform _playerTransform;
+    private GameObject _cubesParent;
+    [SerializeField]
+    private float _deplacementSpeed;
 
 
     private AudioInputAction _audioInputAction;
-    private float _musicSpeed;
+    
     private AudioSource _audioSource;
-    private Transform _startPosition;
+    private Vector3 _startPosition;
     private bool _isPlaying;
     private bool _inPause;
 
@@ -29,7 +32,7 @@ public class Audio : MonoBehaviour
 
     private void Start()
     {
-        _startPosition = _playerTransform;
+        _startPosition = _cubesParent.transform.position;
         _audioSource.clip = _audioClip;
     }
 
@@ -63,9 +66,11 @@ public class Audio : MonoBehaviour
 
             float time;
             _isPlaying = true;
-            time = _musicSpeed / (_playerTransform.position.z - _startPosition.position.z);
-            _audioSource.time = time - _offset;
+            time = (Math.Abs(_cubesParent.transform.position.z - _startPosition.z))/ _deplacementSpeed;
+            _audioSource.time = (time > _offset)? time - _offset : 0;
             _audioSource.Play();
+            Debug.Log(time + " audioSource.time : " + _audioSource.time);
+            Debug.Log(_startPosition);
 
         }
     }

@@ -14,12 +14,13 @@ public class CubePlacement : MonoBehaviour
     private float enter;
     private Ray ray;
 
-    private InputActionReference SpawnAction;
+    [SerializeField] private MoveCubes SpawnAction;
 
     void Start()
     {
-        SpawnAction.action.Enable();
-        SpawnAction.action.performed += SpawnACube;
+        SpawnAction = new MoveCubes();
+        SpawnAction.SpawnCube.spawncube.Enable();
+        SpawnAction.SpawnCube.spawncube.performed += SpawnACube;
         gridPlane = new Plane(Vector3.back, grid.transform.position);
     }
 

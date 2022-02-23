@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6349874400477223464}
   - component: {fileID: 8184809226948106339}
   - component: {fileID: 7558308141487988397}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HitIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7252321186869512462}
   - component: {fileID: 7252321186869512463}
   - component: {fileID: 7252321186869512448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedCube
   m_TagString: Cube
   m_Icon: {fileID: 0}

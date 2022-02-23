@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1808075670314051074}
   - component: {fileID: 1808075670314051075}
   - component: {fileID: 1808075670314051084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueCube
   m_TagString: Cube
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2715021383426340132}
   - component: {fileID: 875017945857210223}
   - component: {fileID: 1537550164446179745}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HitIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

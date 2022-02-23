@@ -1,0 +1,62 @@
+{
+    "name": "MoveCubes",
+    "maps": [
+        {
+            "name": "MovesCube",
+            "id": "8441c7c7-a18d-4e78-b775-6b5c04df0b3f",
+            "actions": [
+                {
+                    "name": "ForwardBackward",
+                    "type": "Value",
+                    "id": "4a18cbd1-6815-4fe3-a24c-344d7cdb092a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6fde1b14-2184-40c0-8def-5fb344b7cde7",
+                    "path": "<XRController>/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "SpawnCube",
+            "id": "3c09380c-0522-46ca-8863-0f07c8ffd959",
+            "actions": [
+                {
+                    "name": "spawncube",
+                    "type": "Value",
+                    "id": "558e5d09-e1c0-4aeb-8665-bc647d87c5b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "36e83c54-6536-417e-8f41-dcb63ccb0596",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "spawncube",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

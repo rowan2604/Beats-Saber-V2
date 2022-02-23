@@ -29,6 +29,7 @@ public class Saber : MonoBehaviour
             else
                 Debug.Log("fdp");
             Destroy(collider.gameObject);
+            Debug.Log("destroy " + collider.gameObject.name);
         }
         else
             Debug.Log("Erreur : le sabre n'intersecte pas le plan du cube");
@@ -37,15 +38,17 @@ public class Saber : MonoBehaviour
     private bool ValidHit(Vector3 hitPoint, Vector3 faceCenter, int rotation)
     {
         bool horizontal = Mathf.Abs(hitPoint.x - faceCenter.x) > Mathf.Abs(hitPoint.y - faceCenter.y);
-        if(horizontal)
+        if (horizontal)
         {
+            Debug.Log("horizontal");
             if (!(rotation / 90 % 2 == 1))
                 return false;
             bool left = hitPoint.x < faceCenter.x;
-            return left ? rotation == 270 : rotation == 90;
+            return left ? rotation == 90 : rotation == 270;
         }
         else
         {
+            Debug.Log("vertical");
             if (!(rotation / 90 % 2 == 0))
                 return false;
             bool bottom = hitPoint.y < faceCenter.y;
