@@ -14,7 +14,7 @@ public class CubeMovement : MonoBehaviour
 {
 
     public static CubeMovement instance;
-    private bool isplayLevel;
+    private bool _isplayLevel;
     public float DeplacementSpeed;
     [SerializeField] private LevelType _levelType;
     [SerializeField] private float _interval;
@@ -34,10 +34,13 @@ public class CubeMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        _moveCubesInputAction.MovesCube.ForwardBackward.performed += ForwardBackward;
-        _moveCubesInputAction.MovesCube.ForwardBackward.Enable();
-        _moveCubesInputAction.MovesCube.StopMoving.performed += StopMoving;
-        _moveCubesInputAction.MovesCube.StopMoving.Enable();
+        if(_levelType == LevelType.Creation)
+        {
+
+            _moveCubesInputAction.MovesCube.ForwardBackward.performed += ForwardBackward;
+            _moveCubesInputAction.MovesCube.ForwardBackward.Enable();
+
+        }
     }
 
     private void OnDisable()
@@ -47,51 +50,29 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        if( isplayLevel)
+        if(_isplayLevel)
         {
-            transform.position = transform.position - new Vector3(0, 0,_sensMovement * DeplacementSpeed * Time.deltaTime);
+            transform.position = transform.position - new Vector3(0, 0,DeplacementSpeed * Time.deltaTime);
             Debug.Log(transform.position.z);
         }
-        if(_levelType == LevelType.Creation || _isForward)
-        {
-            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * 5 * Time.deltaTime);
-            _isForward = false;
-        }
-            
-        if(_isBackward)
-        {
-            transform.position = transform.position + new Vector3(0, 0, DeplacementSpeed * 5 * Time.deltaTime);
-            _isBackward = false;
-        }
 
-        if(!_isMoving)
-        {
-            if ((transform.position - _currentPosition).sqrMagnitude < _interval * _interval)
-                transform.position = _currentPosition + new Vector3(0, 0, _interval);
-        }
     }
 
 
     private void ForwardBackward(InputAction.CallbackContext context)
     {
-        _currentPosition = transform.position;
-        _isMoving = true;
         float movement = context.ReadValue<Vector2>().y;
         if (movement > 0)
             _sensMovement = 1;
         else
             _sensMovement = -1;
-    }
 
-    private void StopMoving(InputAction.CallbackContext context)
-    {
-        _isMoving = false;
-        Debug.Log("Stop");
+        transform.position = transform.position - new Vector3(0, 0, _sensMovement * DeplacementSpeed * 5 * Time.deltaTime);
     }
 
 
     public void PlayingLevel(bool state)
     {
-        isplayLevel = state;
+        _isplayLevel = state;
     }
 }
