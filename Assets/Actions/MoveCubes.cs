@@ -42,7 +42,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""id"": ""ac1a9aea-e32a-491a-91e5-a22d04704ad0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -50,7 +50,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6fde1b14-2184-40c0-8def-5fb344b7cde7"",
-                    ""path"": ""<XRController>{LeftHand}/devicePosition/y"",
+                    ""path"": ""<XRController>{LeftHand}/touchpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""14550e61-f517-447b-9813-5c5115ed9423"",
-                    ""path"": """",
+                    ""path"": ""<XRController>{LeftHand}/touchpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
