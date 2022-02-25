@@ -24,6 +24,7 @@ public class CubeMovement : MonoBehaviour
     private bool _isForward = false;
     private bool _isBackward = false;
     private bool _isMoving = false;
+    private float _sensMovement = 1;
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class CubeMovement : MonoBehaviour
     {
         if( isplayLevel)
         {
-            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * Time.deltaTime);
+            transform.position = transform.position - new Vector3(0, 0,_sensMovement * DeplacementSpeed * Time.deltaTime);
             Debug.Log(transform.position.z);
         }
         if(_levelType == LevelType.Creation || _isForward)
@@ -75,7 +76,11 @@ public class CubeMovement : MonoBehaviour
     {
         _currentPosition = transform.position;
         _isMoving = true;
-        Debug.Log(context.valueType);
+        float movement = context.ReadValue<Vector2>().y;
+        if (movement > 0)
+            _sensMovement = 1;
+        else
+            _sensMovement = -1;
     }
 
     private void StopMoving(InputAction.CallbackContext context)
@@ -84,10 +89,6 @@ public class CubeMovement : MonoBehaviour
         Debug.Log("Stop");
     }
 
-    private void Backward(InputAction.CallbackContext context)
-    {
-        _isBackward = true;
-    }
 
     public void PlayingLevel(bool state)
     {
