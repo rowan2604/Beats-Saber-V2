@@ -36,6 +36,10 @@ public class CubePlacement : MonoBehaviour
         SpawnAction = new MoveCubes();
         SpawnAction.SpawnCube.spawncube.Enable();
         SpawnAction.SpawnCube.spawncube.performed += SpawnACube;
+        SpawnAction.SpawnCube.rotate.Enable();
+        SpawnAction.SpawnCube.rotate.performed += RotateCube;
+        SpawnAction.SpawnCube.change.Enable();
+        SpawnAction.SpawnCube.change.performed += ChangeCube;
     }
 
     private void OnDisable()
@@ -52,9 +56,9 @@ public class CubePlacement : MonoBehaviour
             Destroy(_currentSelectedCube);
             _currentSelectedCube = Instantiate(_currentCubePrefab, _currentPlacementPoint.position, 
                 Quaternion.Euler(Vector3.forward * _lastRotation));
-            Color color = _currentSelectedCube.GetComponent<Renderer>().material.color;
+            Color color = _currentSelectedCube.GetComponent<MeshRenderer>().material.color;
             color.a = 0.2f;
-            _currentSelectedCube.GetComponent<Renderer>().material.color = color;
+            _currentSelectedCube.GetComponent<MeshRenderer>().material.color = color;
         }
     }
 

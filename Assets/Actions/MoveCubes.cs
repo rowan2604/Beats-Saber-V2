@@ -50,7 +50,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6fde1b14-2184-40c0-8def-5fb344b7cde7"",
-                    ""path"": ""<XRController>{LeftHand}/touchpad"",
+                    ""path"": ""<XRController>{LeftHand}/devicePosition/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -83,6 +83,24 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""85955704-d8e6-445d-8ad2-41b7d53c97f4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""change"",
+                    ""type"": ""Value"",
+                    ""id"": ""89201ea2-6aa1-4f65-94d4-5322aaf13911"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -94,6 +112,28 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""spawncube"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1032d5b-896a-4eb6-b616-ce3d5a9b6faa"",
+                    ""path"": ""<XRController>{RightHand}/touchpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23eb84b0-d40e-4047-85b6-3ea08441e1bb"",
+                    ""path"": ""<XRController>{RightHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -109,6 +149,8 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
         // SpawnCube
         m_SpawnCube = asset.FindActionMap("SpawnCube", throwIfNotFound: true);
         m_SpawnCube_spawncube = m_SpawnCube.FindAction("spawncube", throwIfNotFound: true);
+        m_SpawnCube_rotate = m_SpawnCube.FindAction("rotate", throwIfNotFound: true);
+        m_SpawnCube_change = m_SpawnCube.FindAction("change", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -210,11 +252,15 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_SpawnCube;
     private ISpawnCubeActions m_SpawnCubeActionsCallbackInterface;
     private readonly InputAction m_SpawnCube_spawncube;
+    private readonly InputAction m_SpawnCube_rotate;
+    private readonly InputAction m_SpawnCube_change;
     public struct SpawnCubeActions
     {
         private @MoveCubes m_Wrapper;
         public SpawnCubeActions(@MoveCubes wrapper) { m_Wrapper = wrapper; }
         public InputAction @spawncube => m_Wrapper.m_SpawnCube_spawncube;
+        public InputAction @rotate => m_Wrapper.m_SpawnCube_rotate;
+        public InputAction @change => m_Wrapper.m_SpawnCube_change;
         public InputActionMap Get() { return m_Wrapper.m_SpawnCube; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -227,6 +273,12 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 @spawncube.started -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnSpawncube;
                 @spawncube.performed -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnSpawncube;
                 @spawncube.canceled -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnSpawncube;
+                @rotate.started -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnRotate;
+                @rotate.performed -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnRotate;
+                @rotate.canceled -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnRotate;
+                @change.started -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnChange;
+                @change.performed -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnChange;
+                @change.canceled -= m_Wrapper.m_SpawnCubeActionsCallbackInterface.OnChange;
             }
             m_Wrapper.m_SpawnCubeActionsCallbackInterface = instance;
             if (instance != null)
@@ -234,6 +286,12 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 @spawncube.started += instance.OnSpawncube;
                 @spawncube.performed += instance.OnSpawncube;
                 @spawncube.canceled += instance.OnSpawncube;
+                @rotate.started += instance.OnRotate;
+                @rotate.performed += instance.OnRotate;
+                @rotate.canceled += instance.OnRotate;
+                @change.started += instance.OnChange;
+                @change.performed += instance.OnChange;
+                @change.canceled += instance.OnChange;
             }
         }
     }
@@ -246,5 +304,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
     public interface ISpawnCubeActions
     {
         void OnSpawncube(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnChange(InputAction.CallbackContext context);
     }
 }
