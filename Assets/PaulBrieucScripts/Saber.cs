@@ -15,6 +15,11 @@ public class Saber : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (color != collider.GetComponent<Cube>().color)
+        {
+            Debug.Log("Mauvaise couleur");
+            return;
+        }
         Vector3 cubeCenter = collider.transform.position;
         Vector3 faceCenter = cubeCenter + Vector3.back * _demiCube;
         Plane plane = new Plane(Vector3.forward, faceCenter);

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: Blue Neon
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6271692, g: 0.20412956, b: 0.8867924, a: 1}
-    - _EmissionColor: {r: 3.3207548, g: 0.4148672, b: 0, a: 1}
+    - _Color: {r: 0.047814753, g: 0.04236374, b: 0.9622642, a: 1}
+    - _EmissionColor: {r: 0.18503836, g: 0.2067991, b: 2.263163, a: 1}
   m_BuildTextureStacks: []

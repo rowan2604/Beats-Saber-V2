@@ -4086,10 +4086,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177e53e820eb67d43ae8a2ef7bfe4363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 900340088}
-  rightHandTransform: {fileID: 2049900423}
-  PrefabCube: {fileID: 7252321186869512449, guid: cdcaa94115617834b86ed487573ee13b, type: 3}
-  TransformCube: {fileID: 900340088}
+  _grid: {fileID: 900340088}
+  _rightHandTransform: {fileID: 2049900423}
+  _prefabRedCube: {fileID: 7252321186869512449, guid: cdcaa94115617834b86ed487573ee13b, type: 3}
+  _prefabBlueCube: {fileID: 1808075670314051085, guid: 231bac3f2a8a1ce48ba60dd4ba9dfee6, type: 3}
+  _cubesParent: {fileID: 1844194510}
 --- !u!4 &1848828506
 Transform:
   m_ObjectHideFlags: 0
