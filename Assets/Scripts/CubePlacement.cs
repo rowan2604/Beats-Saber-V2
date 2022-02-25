@@ -9,7 +9,6 @@ public class CubePlacement : MonoBehaviour
     [SerializeField] private Transform _rightHandTransform;
     [SerializeField] private GameObject _prefabRedCube;
     [SerializeField] private GameObject _prefabBlueCube;
-    [SerializeField] private Transform _transformCube;
     [SerializeField] private Transform _cubesParent;
 
     private Plane _gridPlane;
@@ -28,10 +27,20 @@ public class CubePlacement : MonoBehaviour
 
     void Start()
     {
+        _currentCubePrefab = _prefabRedCube;
+        _gridPlane = new Plane(Vector3.back, _grid.transform.position);
+    }
+
+    private void OnEnable()
+    {
         SpawnAction = new MoveCubes();
         SpawnAction.SpawnCube.spawncube.Enable();
         SpawnAction.SpawnCube.spawncube.performed += SpawnACube;
-        _gridPlane = new Plane(Vector3.back, _grid.transform.position);
+    }
+
+    private void OnDisable()
+    {
+        SpawnAction.SpawnCube.spawncube.Disable();
     }
 
     void Update()
@@ -97,5 +106,13 @@ public class CubePlacement : MonoBehaviour
         _currentSelectedCube?.transform.Rotate(Vector3.forward * 90);
         _lastRotation += 90;
         _lastRotation %= 360;
+    }
+
+    private void ChangeCube(InputAction.CallbackContext ctx)
+    {
+        if (_currentCubePrefab == _prefabBlueCube)
+            _currentCubePrefab = _prefabRedCube;
+        else
+            _currentCubePrefab = _prefabBlueCube;
     }
 }
