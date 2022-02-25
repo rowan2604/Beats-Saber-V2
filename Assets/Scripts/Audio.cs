@@ -15,6 +15,8 @@ public class Audio : MonoBehaviour
     private GameObject _cubesParent;
     [SerializeField]
     private float _deplacementSpeed;
+    [SerializeField] 
+    private LevelType _levelType;
 
 
     private AudioInputAction _audioInputAction;
@@ -38,13 +40,14 @@ public class Audio : MonoBehaviour
 
     private void OnEnable()
     {
+        if(_levelType == LevelType.Creation)
+        {
+            _audioInputAction.Audio.Pause.performed += Pause;
+            _audioInputAction.Audio.Pause.Enable();
 
-        _audioInputAction.Audio.Pause.performed += Pause;
-        _audioInputAction.Audio.Pause.Enable();
-
-        _audioInputAction.Audio.Play.performed += Play;
-        _audioInputAction.Audio.Play.Enable();
-
+            _audioInputAction.Audio.Play.performed += Play;
+            _audioInputAction.Audio.Play.Enable();
+        }
     }
 
     private void OnDisable()
@@ -66,11 +69,11 @@ public class Audio : MonoBehaviour
 
             float time;
             _isPlaying = true;
+            CubeMovement.instance.PlayingLevel(true);
             time = (Math.Abs(_cubesParent.transform.position.z - _startPosition.z))/ _deplacementSpeed;
+
             _audioSource.time = (time > _offset)? time - _offset : 0;
             _audioSource.Play();
-            Debug.Log(time + " audioSource.time : " + _audioSource.time);
-            Debug.Log(_startPosition);
 
         }
     }
@@ -81,10 +84,11 @@ public class Audio : MonoBehaviour
         Debug.Log("FDP");
         if (_isPlaying && !_inPause)
         {
-
+            
             _audioSource.Pause();
             _inPause = true;
             _isPlaying = false;
+            CubeMovement.instance.PlayingLevel(false);
 
         }
         else if (_inPause)
@@ -93,6 +97,7 @@ public class Audio : MonoBehaviour
             _audioSource.UnPause();
             _inPause = false;
             _isPlaying = true;
+            CubeMovement.instance.PlayingLevel(true);
 
         }
     }

@@ -35,6 +35,15 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""StopMoving"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac1a9aea-e32a-491a-91e5-a22d04704ad0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ForwardBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14550e61-f517-447b-9813-5c5115ed9423"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StopMoving"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -85,6 +105,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
         // MovesCube
         m_MovesCube = asset.FindActionMap("MovesCube", throwIfNotFound: true);
         m_MovesCube_ForwardBackward = m_MovesCube.FindAction("ForwardBackward", throwIfNotFound: true);
+        m_MovesCube_StopMoving = m_MovesCube.FindAction("StopMoving", throwIfNotFound: true);
         // SpawnCube
         m_SpawnCube = asset.FindActionMap("SpawnCube", throwIfNotFound: true);
         m_SpawnCube_spawncube = m_SpawnCube.FindAction("spawncube", throwIfNotFound: true);
@@ -148,11 +169,13 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MovesCube;
     private IMovesCubeActions m_MovesCubeActionsCallbackInterface;
     private readonly InputAction m_MovesCube_ForwardBackward;
+    private readonly InputAction m_MovesCube_StopMoving;
     public struct MovesCubeActions
     {
         private @MoveCubes m_Wrapper;
         public MovesCubeActions(@MoveCubes wrapper) { m_Wrapper = wrapper; }
         public InputAction @ForwardBackward => m_Wrapper.m_MovesCube_ForwardBackward;
+        public InputAction @StopMoving => m_Wrapper.m_MovesCube_StopMoving;
         public InputActionMap Get() { return m_Wrapper.m_MovesCube; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -165,6 +188,9 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 @ForwardBackward.started -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnForwardBackward;
                 @ForwardBackward.performed -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnForwardBackward;
                 @ForwardBackward.canceled -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnForwardBackward;
+                @StopMoving.started -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnStopMoving;
+                @StopMoving.performed -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnStopMoving;
+                @StopMoving.canceled -= m_Wrapper.m_MovesCubeActionsCallbackInterface.OnStopMoving;
             }
             m_Wrapper.m_MovesCubeActionsCallbackInterface = instance;
             if (instance != null)
@@ -172,6 +198,9 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                 @ForwardBackward.started += instance.OnForwardBackward;
                 @ForwardBackward.performed += instance.OnForwardBackward;
                 @ForwardBackward.canceled += instance.OnForwardBackward;
+                @StopMoving.started += instance.OnStopMoving;
+                @StopMoving.performed += instance.OnStopMoving;
+                @StopMoving.canceled += instance.OnStopMoving;
             }
         }
     }
@@ -212,6 +241,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
     public interface IMovesCubeActions
     {
         void OnForwardBackward(InputAction.CallbackContext context);
+        void OnStopMoving(InputAction.CallbackContext context);
     }
     public interface ISpawnCubeActions
     {
