@@ -31,4 +31,9 @@ public class PauseManager : MonoBehaviour
         _PauseUI.SetActive(true);
         _Blocks.SetActive(false);
     }
+
+    public void ResumeGame()
+    {
+
+    }
 }
