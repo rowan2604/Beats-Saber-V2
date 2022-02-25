@@ -9,26 +9,26 @@
                     "name": "ForwardBackward",
                     "type": "Value",
                     "id": "4a18cbd1-6815-4fe3-a24c-344d7cdb092a",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "StopMoving",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ac1a9aea-e32a-491a-91e5-a22d04704ad0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "6fde1b14-2184-40c0-8def-5fb344b7cde7",
-                    "path": "<XRController>/joystick",
+                    "path": "<XRController>{LeftHand}/touchpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

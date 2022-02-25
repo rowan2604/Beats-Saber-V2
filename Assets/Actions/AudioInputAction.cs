@@ -50,7 +50,7 @@ public partial class @AudioInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a019efd7-5103-4b11-aa79-ba4b54a33611"",
-                    ""path"": ""<Keyboard>/#(A)"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public partial class @AudioInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d9f2a5dc-c0a6-4861-9608-37bea2a444f6"",
-                    ""path"": ""<Keyboard>/#(Z)"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

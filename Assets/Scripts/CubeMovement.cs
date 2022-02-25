@@ -28,18 +28,28 @@ public class CubeMovement : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
         _moveCubesInputAction = new MoveCubes();
     }
-    // Update is called once per frame
+
+    private void OnEnable()
+    {
+        _moveCubesInputAction.MovesCube.ForwardBackward.performed += ForwardBackward;
+        _moveCubesInputAction.MovesCube.ForwardBackward.Enable();
+        _moveCubesInputAction.MovesCube.StopMoving.performed += StopMoving;
+        _moveCubesInputAction.MovesCube.StopMoving.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _moveCubesInputAction.MovesCube.ForwardBackward.Disable();
+    }
+
     void Update()
     {
         if( isplayLevel)
         {
-            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * 5 * Time.deltaTime);
+            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * Time.deltaTime);
+            Debug.Log(transform.position.z);
         }
         if(_levelType == LevelType.Creation || _isForward)
         {
@@ -60,28 +70,12 @@ public class CubeMovement : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if(_levelType == LevelType.Creation)
-        {
-
-            _moveCubesInputAction.MovesCube.ForwardBackward.performed += ForwardBackward;
-            _moveCubesInputAction.MovesCube.ForwardBackward.Enable();
-            _moveCubesInputAction.MovesCube.StopMoving.performed += StopMoving;
-            _moveCubesInputAction.MovesCube.StopMoving.Enable();
-        }       
-    }
-
-    private void OnDisable()
-    {
-        _moveCubesInputAction.MovesCube.ForwardBackward.Disable();
-    }
 
     private void ForwardBackward(InputAction.CallbackContext context)
     {
         _currentPosition = transform.position;
         _isMoving = true;
-        Debug.Log("Moving");
+        Debug.Log(context.valueType);
     }
 
     private void StopMoving(InputAction.CallbackContext context)

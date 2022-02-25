@@ -28,6 +28,7 @@ public class PauseManager : MonoBehaviour
 
     private void PauseGame(InputAction.CallbackContext context)
     {
+        GetComponent<CubePlacement>().enabled = false;
         _PauseUI.SetActive(true);
         _Blocks.SetActive(false);
     }

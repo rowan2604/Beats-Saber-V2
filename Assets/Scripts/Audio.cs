@@ -48,6 +48,7 @@ public class Audio : MonoBehaviour
             _audioInputAction.Audio.Play.performed += Play;
             _audioInputAction.Audio.Play.Enable();
         }
+
     }
 
     private void OnDisable()
