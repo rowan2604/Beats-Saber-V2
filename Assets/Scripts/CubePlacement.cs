@@ -5,44 +5,68 @@ using UnityEngine.InputSystem;
 
 public class CubePlacement : MonoBehaviour
 {
-    [SerializeField] private Transform grid;
-    [SerializeField] private Transform rightHandTransform;
-    [SerializeField] private GameObject PrefabCube;
-    [SerializeField] private Transform TransformCube;
+    [SerializeField] private Transform _grid;
+    [SerializeField] private Transform _rightHandTransform;
+    [SerializeField] private GameObject _prefabRedCube;
+    [SerializeField] private GameObject _prefabBlueCube;
+    [SerializeField] private Transform _transformCube;
+    [SerializeField] private Transform _cubesParent;
 
-    private Plane gridPlane;
-    private float enter;
-    private Ray ray;
+    private Plane _gridPlane;
+    private float _enter;
+    private Ray _ray;
 
     [SerializeField] private MoveCubes SpawnAction;
+    private GameObject _currentCubePrefab;
+    private GameObject _currentSelectedCube;
+    private Transform _currentPlacementPoint;
+    private float _lastRotation = 0f;
+
+    private InputActionReference _rotateAction;
+
+    private Transform temp;
 
     void Start()
     {
         SpawnAction = new MoveCubes();
         SpawnAction.SpawnCube.spawncube.Enable();
         SpawnAction.SpawnCube.spawncube.performed += SpawnACube;
-        gridPlane = new Plane(Vector3.back, grid.transform.position);
+        _gridPlane = new Plane(Vector3.back, _grid.transform.position);
     }
 
     void Update()
     {
-        ray = new Ray(rightHandTransform.position, rightHandTransform.forward);
-        if (gridPlane.Raycast(ray, out enter))
+        temp = GetNearestPoint();
+        if(temp != _currentPlacementPoint)
         {
-            Vector3 hitPoint = ray.GetPoint(enter);
-            GetNearestPoint(hitPoint);
+            _currentPlacementPoint = temp;
+            Destroy(_currentSelectedCube);
+            _currentSelectedCube = Instantiate(_currentCubePrefab, _currentPlacementPoint.position, 
+                Quaternion.Euler(Vector3.forward * _lastRotation));
+            Color color = _currentSelectedCube.GetComponent<Renderer>().material.color;
+            color.a = 0.2f;
+            _currentSelectedCube.GetComponent<Renderer>().material.color = color;
         }
     }
-    void SpawnACube(InputAction.CallbackContext ctx)
+
+    private Transform GetNearestPoint()
     {
-        Instantiate(PrefabCube, TransformCube.position, Quaternion.identity);
+        _ray = new Ray(_rightHandTransform.position, _rightHandTransform.forward);
+        if (_gridPlane.Raycast(_ray, out _enter))
+        {
+            Vector3 hitPoint = _ray.GetPoint(_enter);
+            return GetNearestPointFromHit(hitPoint);
+        }
+        Debug.Log("le raycast ne touche pas le plan");
+        return null;
     }
 
-    private Transform GetNearestPoint(Vector3 origin)
+    private Transform GetNearestPointFromHit(Vector3 hitPoint)
     {
-        Transform nearestPoint = grid.GetChild(0);
-        foreach (Transform t in grid) {
-            if ((t.position - origin).magnitude <= (nearestPoint.position - origin).magnitude)
+        Transform nearestPoint = _grid.GetChild(0);
+        foreach (Transform t in _grid)
+        {
+            if ((t.position - hitPoint).magnitude <= (nearestPoint.position - hitPoint).magnitude)
             {
                 nearestPoint.GetComponent<Renderer>().material.color = Color.white;
                 nearestPoint = t;
@@ -51,5 +75,27 @@ public class CubePlacement : MonoBehaviour
             else t.GetComponent<Renderer>().material.color = Color.white;
         }
         return nearestPoint;
+    }
+
+    private void SpawnACube(InputAction.CallbackContext ctx)
+    {
+        if (_currentSelectedCube?.GetComponent<Cube>().Collide == false)
+        {
+            Color color = _currentSelectedCube.GetComponent<Renderer>().material.color;
+            color.a = 1f;
+            _currentSelectedCube.GetComponent<Renderer>().material.color = color;
+
+            _currentSelectedCube.transform.SetParent(_cubesParent);
+            _currentSelectedCube = null;
+        }
+        else
+            Debug.Log("espace occup�");
+    }
+
+    private void RotateCube(InputAction.CallbackContext ctx)
+    {
+        _currentSelectedCube?.transform.Rotate(Vector3.forward * 90);
+        _lastRotation += 90;
+        _lastRotation %= 360;
     }
 }
