@@ -42,7 +42,7 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        if(_isplayLevel)
+        if(_levelType == LevelType.Playing)//_isplayLevel)
         {
             transform.position = transform.position - new Vector3(0, 0,DeplacementSpeed * Time.deltaTime);
         }
