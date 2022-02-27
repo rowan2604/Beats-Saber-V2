@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,6 +33,11 @@ public class Audio : MonoBehaviour
     {
         _startPosition = _cubesParent.transform.position;
         _audioSource.clip = _audioClip;
+        if (_levelType == LevelType.Playing)
+        {
+            CubeMovement.instance.PlayingLevel(true);
+            _audioSource.Play();
+        }
     }
 
     private void OnEnable()
@@ -63,6 +65,7 @@ public class Audio : MonoBehaviour
 
             _audioSource.Stop();
             _isPlaying = false;
+            CubeMovement.instance.PlayingLevel(false);
 
         }
         else
@@ -71,8 +74,8 @@ public class Audio : MonoBehaviour
             float time;
             _isPlaying = true;
             CubeMovement.instance.PlayingLevel(true);
-            time = (Math.Abs(_cubesParent.transform.position.z - _startPosition.z))/ _deplacementSpeed;
-
+            time = (_startPosition.z - _cubesParent.transform.position.z) / _deplacementSpeed;
+            Debug.Log(time);
             _audioSource.time = (time > _offset)? time - _offset : 0;
             _audioSource.Play();
 
@@ -82,7 +85,6 @@ public class Audio : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        Debug.Log("FDP");
         if (_isPlaying && !_inPause)
         {
             

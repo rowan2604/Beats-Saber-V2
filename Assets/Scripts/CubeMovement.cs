@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,19 +11,13 @@ public enum LevelType
 public class CubeMovement : MonoBehaviour
 {
 
-    public static CubeMovement instance;
-    private bool _isplayLevel;
+    public static CubeMovement instance;   
     public float DeplacementSpeed;
     [SerializeField] private LevelType _levelType;
-    [SerializeField] private float _interval;
 
-    private Vector3 _currentPosition;
     private MoveCubes _moveCubesInputAction;
-    private bool _isForward = false;
-    private bool _isBackward = false;
-    private bool _isMoving = false;
     private float _sensMovement = 1;
-
+    private bool _isplayLevel;
     private void Awake()
     {
         instance = this;
@@ -53,7 +45,6 @@ public class CubeMovement : MonoBehaviour
         if(_isplayLevel)
         {
             transform.position = transform.position - new Vector3(0, 0,DeplacementSpeed * Time.deltaTime);
-            Debug.Log(transform.position.z);
         }
 
     }

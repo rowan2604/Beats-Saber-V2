@@ -31,7 +31,7 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""name"": ""ForwardBackward"",
                     ""type"": ""Value"",
                     ""id"": ""4a18cbd1-6815-4fe3-a24c-344d7cdb092a"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -51,6 +51,17 @@ public partial class @MoveCubes : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6fde1b14-2184-40c0-8def-5fb344b7cde7"",
                     ""path"": ""<XRController>{LeftHand}/touchpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f780caef-a287-4b8d-9ce7-1f3a28a74c87"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
