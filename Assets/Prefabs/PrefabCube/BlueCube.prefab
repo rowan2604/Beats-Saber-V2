@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1808075670314051084}
   - component: {fileID: -3013505127193767815}
   - component: {fileID: 2871401913034620848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueCube
   m_TagString: Cube
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ BoxCollider:
   m_GameObject: {fileID: 2104167793623082966}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

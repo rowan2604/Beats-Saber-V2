@@ -31,8 +31,6 @@ public class PauseManager : MonoBehaviour
 
     private void PauseGame(InputAction.CallbackContext context)
     {
-        _PreviousScriptState = GetComponent<CubePlacement>().isActiveAndEnabled;
-        GetComponent<CubePlacement>().enabled = false;
         _PauseUI.SetActive(true);
         _Blocks.SetActive(false);
         Audio.Pause(context);
@@ -41,7 +39,6 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        GetComponent<CubePlacement>().enabled = _PreviousScriptState;
         _PauseUI.SetActive(false);
         _Blocks.SetActive(true);
         Audio.Pause(new InputAction.CallbackContext());
