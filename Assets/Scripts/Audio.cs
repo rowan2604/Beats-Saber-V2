@@ -3,19 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Audio : MonoBehaviour
 {
-    private static Audio Instance;
+    private static Audio _instance;
 
-    [SerializeField]
-    private float _offset;
-    [SerializeField]
-    private AudioClip _audioClip;
-    [SerializeField]
-    private GameObject _cubesParent;
-    [SerializeField]
-    private float _deplacementSpeed;
-    [SerializeField] 
-    private LevelType _levelType;
-
+    [SerializeField] private float _offset;
+    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private GameObject _cubesParent;
+    [SerializeField] private float _deplacementSpeed;
 
     private AudioInputAction _audioInputAction;
     
@@ -26,7 +19,7 @@ public class Audio : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
 
         _audioSource = GetComponent<AudioSource>();
         _audioInputAction = new AudioInputAction();
@@ -36,7 +29,7 @@ public class Audio : MonoBehaviour
     {
         _startPosition = _cubesParent.transform.position;
         _audioSource.clip = _audioClip;
-        if (_levelType == LevelType.Playing)
+        if (Main.CurrentLevelType == Main.LevelType.Playing)
         {
             CubeMovement.PlayingLevel(true);
             _audioSource.Play();
@@ -45,7 +38,7 @@ public class Audio : MonoBehaviour
 
     private void OnEnable()
     {
-        if(_levelType == LevelType.Creation)
+        if(Main.CurrentLevelType == Main.LevelType.Creation)
         {
             _audioInputAction.Audio.Pause.performed += Pause;
             _audioInputAction.Audio.Pause.Enable();
@@ -53,7 +46,6 @@ public class Audio : MonoBehaviour
             _audioInputAction.Audio.Play.performed += Play;
             _audioInputAction.Audio.Play.Enable();
         }
-
     }
 
     private void OnDisable()
@@ -65,15 +57,12 @@ public class Audio : MonoBehaviour
     {
         if (_isPlaying)
         {
-
             _audioSource.Stop();
             _isPlaying = false;
             CubeMovement.PlayingLevel(false);
-
         }
         else
         {
-
             float time;
             _isPlaying = true;
             CubeMovement.PlayingLevel(true);
@@ -81,31 +70,25 @@ public class Audio : MonoBehaviour
             Debug.Log(time);
             _audioSource.time = (time > _offset)? time - _offset : 0;
             _audioSource.Play();
-
         }
     }
 
 
     public static void Pause(InputAction.CallbackContext context)
     {
-        if (Instance._isPlaying && !Instance._inPause)
+        if (_instance._isPlaying && !_instance._inPause)
         {
-
-            Instance._audioSource.Pause();
-            Instance._inPause = true;
-            Instance._isPlaying = false;
+            _instance._audioSource.Pause();
+            _instance._inPause = true;
+            _instance._isPlaying = false;
             CubeMovement.PlayingLevel(false);
-
         }
-        else if (Instance._inPause)
+        else if (_instance._inPause)
         {
-
-            Instance._audioSource.UnPause();
-            Instance._inPause = false;
-            Instance._isPlaying = true;
+            _instance._audioSource.UnPause();
+            _instance._inPause = false;
+            _instance._isPlaying = true;
             CubeMovement.PlayingLevel(true);
-
         }
     }
-
 }

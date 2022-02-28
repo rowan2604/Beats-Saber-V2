@@ -1246,6 +1246,7 @@ GameObject:
   - component: {fileID: 1532868205}
   - component: {fileID: 1532868206}
   - component: {fileID: 1532868209}
+  - component: {fileID: 1532868208}
   m_Layer: 0
   m_Name: _Scripts
   m_TagString: Untagged
@@ -1295,8 +1296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570d4eed51cbbf64581dcbc750d32b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PauseUI: {fileID: 969643847}
-  _Blocks: {fileID: 1906613654}
+  _pauseUI: {fileID: 969643847}
+  _blocks: {fileID: 1906613654}
 --- !u!4 &1532868207
 Transform:
   m_ObjectHideFlags: 0
@@ -1311,6 +1312,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1532868208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532868204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb181ff6866756e44b497947804d4766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelType: 1
 --- !u!114 &1532868209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,7 +1340,6 @@ MonoBehaviour:
   CubesParent: {fileID: 1906613654}
   _RedCubePrefab: {fileID: 7252321186869512449, guid: cdcaa94115617834b86ed487573ee13b, type: 3}
   _BlueCubePrefab: {fileID: 1808075670314051085, guid: 231bac3f2a8a1ce48ba60dd4ba9dfee6, type: 3}
-  _levelType: 1
 --- !u!1001 &1615636595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1336,11 +1349,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8975147608295271485, guid: 183660df9e7035c44bf706cfffed64f0, type: 3}
       propertyPath: m_Name
-      value: CubesParent
+      value: CubesHolder
       objectReference: {fileID: 0}
     - target: {fileID: 8975147608295271486, guid: 183660df9e7035c44bf706cfffed64f0, type: 3}
       propertyPath: _levelType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975147608295271486, guid: 183660df9e7035c44bf706cfffed64f0, type: 3}
+      propertyPath: deplacementSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8975147608295271487, guid: 183660df9e7035c44bf706cfffed64f0, type: 3}
       propertyPath: m_RootOrder

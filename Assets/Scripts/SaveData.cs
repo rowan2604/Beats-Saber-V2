@@ -18,11 +18,9 @@ public class SaveData : MonoBehaviour
 
     private bool _EndOfCubes = false;
 
-    [SerializeField] private LevelType _levelType;
-
     private void Awake()
     {
-        if(_levelType == LevelType.Playing)
+        if(Main.CurrentLevelType == Main.LevelType.Playing)
             LoadJson();
     }
 

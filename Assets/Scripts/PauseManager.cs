@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,10 +6,8 @@ public class PauseManager : MonoBehaviour
 {
     private Pause _setPause;
 
-    [SerializeField] private GameObject _PauseUI;
-    [SerializeField] private GameObject _Blocks;
-
-    private bool _PreviousScriptState;
+    [SerializeField] private GameObject _pauseUI;
+    [SerializeField] private GameObject _blocks;
 
     private void Awake()
     {
@@ -31,16 +27,16 @@ public class PauseManager : MonoBehaviour
 
     private void PauseGame(InputAction.CallbackContext context)
     {
-        _PauseUI.SetActive(true);
-        _Blocks.SetActive(false);
+        _pauseUI.SetActive(true);
+        _blocks.SetActive(false);
         Audio.Pause(context);
         CubeMovement.PlayingLevel(false);
     }
 
     public void ResumeGame()
     {
-        _PauseUI.SetActive(false);
-        _Blocks.SetActive(true);
+        _pauseUI.SetActive(false);
+        _blocks.SetActive(true);
         Audio.Pause(new InputAction.CallbackContext());
         CubeMovement.PlayingLevel(true);
     }
