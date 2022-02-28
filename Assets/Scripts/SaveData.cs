@@ -39,7 +39,7 @@ public class SaveData : MonoBehaviour
         {
             cube = CubesParent.transform.GetChild(index).gameObject;
 
-            position = cube.transform.position;
+            position = cube.transform.localPosition;
             rotation = cube.transform.rotation.eulerAngles;
 
             Color = cube.GetComponent<Cube>().color == Saber.Color.Red;
@@ -92,8 +92,10 @@ public class SaveData : MonoBehaviour
             GameObject newCube;
 
             cubeToSpawn = cubeData.color ? _RedCubePrefab : _BlueCubePrefab;
-            newCube = Instantiate(cubeToSpawn, new Vector3(cubeData.x, cubeData.y, cubeData.z), Quaternion.Euler(0, 0, cubeData.rotation));
+            newCube = Instantiate(cubeToSpawn, new Vector3(0,0,0), Quaternion.Euler(0, 0, cubeData.rotation));
             newCube.transform.SetParent(CubesParent.transform);
+            newCube.transform.localPosition = new Vector3(cubeData.x, cubeData.y, cubeData.z);
+            
         }
     }
 

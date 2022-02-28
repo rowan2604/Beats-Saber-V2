@@ -29,19 +29,30 @@ public partial class @Pause : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""LaunchPause"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""56e20828-7369-4da9-ba15-70a4c01eab83"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""adfe6047-fb18-49ae-92c2-dae1ed6c4cff"",
-                    ""path"": ""<XRController>{RightHand}/menuButton"",
+                    ""path"": ""<XRController>{RightHand}/home"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""847b3f50-5e51-4d91-be12-f90feedfcbb2"",
+                    ""path"": ""<Keyboard>/#(W)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

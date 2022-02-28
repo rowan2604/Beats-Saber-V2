@@ -45,9 +45,10 @@ public class CubeMovement : MonoBehaviour
     void Update()
     {
         if(_levelType == LevelType.Playing)//_isplayLevel)
-        {
-            transform.position = transform.position - new Vector3(0, 0,DeplacementSpeed * Time.deltaTime);
-        }
+            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * Time.deltaTime);
+
+        if (_levelType == LevelType.Creation && _isplayLevel)
+            transform.position = transform.position - new Vector3(0, 0, DeplacementSpeed * Time.deltaTime);
 
     }
 
@@ -59,7 +60,7 @@ public class CubeMovement : MonoBehaviour
             _sensMovement = 1;
         else
             _sensMovement = -1;
-        if(transform.position.z > _startpos.z)
+        if(transform.position.z - (_sensMovement * DeplacementSpeed * 5 * Time.deltaTime) < _startpos.z)
             transform.position = transform.position - new Vector3(0, 0, _sensMovement * DeplacementSpeed * 5 * Time.deltaTime);
     }
 

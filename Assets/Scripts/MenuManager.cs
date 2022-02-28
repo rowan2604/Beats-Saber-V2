@@ -7,12 +7,12 @@ public class MenuManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("LaSeineDeBase");
+        SceneManager.LoadScene("LaSeineDeJeu");
     }
 
     public void Edit()
     {
-        SceneManager.LoadScene("EditScene");
+        SceneManager.LoadScene("LaSeineDeBase");
     }
 
     public void ExitGame()

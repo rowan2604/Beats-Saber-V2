@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LaSeineDeBase.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/LaSeineDeJeu.unity
+    guid: 110cc39be72d52244918fad4c21acaee
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1f42cf2b18f0dbf4b854a2ba115dd787, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 82f5a9028f94bfa45866128be5cace12, type: 2}
