@@ -15,4 +15,6 @@ public class Cube : MonoBehaviour
     {
         Collide = false;
     }
+
+    
 }

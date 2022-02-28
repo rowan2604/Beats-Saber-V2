@@ -38,17 +38,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9d533635-c1fa-4fcf-b2d8-b0bfeea0bead",
-                    "path": "<Keyboard>/#(A)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Play",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d9f2a5dc-c0a6-4861-9608-37bea2a444f6",
                     "path": "<XRController>{LeftHand}/gripPressed",
                     "interactions": "",

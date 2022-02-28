@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class CubePlacement : MonoBehaviour
 {
+
+    [SerializeField] private Transform _allCubes;
     [SerializeField] private Transform _grid;
     [SerializeField] private Transform _rightHandTransform;
     [SerializeField] private GameObject _prefabRedCube;
@@ -62,6 +64,7 @@ public class CubePlacement : MonoBehaviour
             Destroy(_currentSelectedCube);
             _currentSelectedCube = Instantiate(_currentCubePrefab, _currentPlacementPoint.position, 
                 Quaternion.Euler(Vector3.forward * _lastRotation));
+            _currentSelectedCube.transform.SetParent(_allCubes);
             Color color = _currentSelectedCube.GetComponent<MeshRenderer>().material.color;
             color.a = 0.2f;
             _currentSelectedCube.GetComponent<MeshRenderer>().material.color = color;
