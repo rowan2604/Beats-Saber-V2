@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class PauseManager : MonoBehaviour
         GetComponent<CubePlacement>().enabled = false;
         _PauseUI.SetActive(true);
         _Blocks.SetActive(false);
+        Audio.Pause(context);
+        CubeMovement.PlayingLevel(false);
     }
 
     public void ResumeGame()
@@ -41,5 +44,12 @@ public class PauseManager : MonoBehaviour
         GetComponent<CubePlacement>().enabled = _PreviousScriptState;
         _PauseUI.SetActive(false);
         _Blocks.SetActive(true);
+        Audio.Pause(new InputAction.CallbackContext());
+        CubeMovement.PlayingLevel(true);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

@@ -11,7 +11,7 @@ public enum LevelType
 public class CubeMovement : MonoBehaviour
 {
 
-    public static CubeMovement instance;   
+    private static CubeMovement instance;   
     public float DeplacementSpeed;
     [SerializeField] private LevelType _levelType;
 
@@ -62,8 +62,8 @@ public class CubeMovement : MonoBehaviour
     }
 
 
-    public void PlayingLevel(bool state)
+    public static void PlayingLevel(bool state)
     {
-        _isplayLevel = state;
+        instance._isplayLevel = state;
     }
 }

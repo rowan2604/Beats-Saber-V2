@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Audio : MonoBehaviour
 {
+    private static Audio Instance;
 
     [SerializeField]
     private float _offset;
@@ -25,6 +26,8 @@ public class Audio : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         _audioSource = GetComponent<AudioSource>();
         _audioInputAction = new AudioInputAction();
     }
@@ -35,7 +38,7 @@ public class Audio : MonoBehaviour
         _audioSource.clip = _audioClip;
         if (_levelType == LevelType.Playing)
         {
-            CubeMovement.instance.PlayingLevel(true);
+            CubeMovement.PlayingLevel(true);
             _audioSource.Play();
         }
     }
@@ -65,7 +68,7 @@ public class Audio : MonoBehaviour
 
             _audioSource.Stop();
             _isPlaying = false;
-            CubeMovement.instance.PlayingLevel(false);
+            CubeMovement.PlayingLevel(false);
 
         }
         else
@@ -73,7 +76,7 @@ public class Audio : MonoBehaviour
 
             float time;
             _isPlaying = true;
-            CubeMovement.instance.PlayingLevel(true);
+            CubeMovement.PlayingLevel(true);
             time = (_startPosition.z - _cubesParent.transform.position.z) / _deplacementSpeed;
             Debug.Log(time);
             _audioSource.time = (time > _offset)? time - _offset : 0;
@@ -83,24 +86,24 @@ public class Audio : MonoBehaviour
     }
 
 
-    public void Pause(InputAction.CallbackContext context)
+    public static void Pause(InputAction.CallbackContext context)
     {
-        if (_isPlaying && !_inPause)
+        if (Instance._isPlaying && !Instance._inPause)
         {
-            
-            _audioSource.Pause();
-            _inPause = true;
-            _isPlaying = false;
-            CubeMovement.instance.PlayingLevel(false);
+
+            Instance._audioSource.Pause();
+            Instance._inPause = true;
+            Instance._isPlaying = false;
+            CubeMovement.PlayingLevel(false);
 
         }
-        else if (_inPause)
+        else if (Instance._inPause)
         {
 
-            _audioSource.UnPause();
-            _inPause = false;
-            _isPlaying = true;
-            CubeMovement.instance.PlayingLevel(true);
+            Instance._audioSource.UnPause();
+            Instance._inPause = false;
+            Instance._isPlaying = true;
+            CubeMovement.PlayingLevel(true);
 
         }
     }

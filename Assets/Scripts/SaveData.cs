@@ -18,6 +18,14 @@ public class SaveData : MonoBehaviour
 
     private bool _EndOfCubes = false;
 
+    [SerializeField] private LevelType _levelType;
+
+    private void Awake()
+    {
+        if(_levelType == LevelType.Playing)
+            LoadJson();
+    }
+
     private void RetrieveCubeData()
     {
         GameObject cube;
@@ -34,7 +42,7 @@ public class SaveData : MonoBehaviour
             position = cube.transform.position;
             rotation = cube.transform.rotation.eulerAngles;
 
-            Color = cube.GetComponent<color>().cubeColor == color.colors.red;
+            Color = cube.GetComponent<Cube>().color == Saber.Color.Red;
             cubeData = new CubeData(position.x, position.y, position.z, rotation.z, Color);
 
             _CubesToSave.Add(cubeData);
@@ -120,6 +128,7 @@ public class SaveData : MonoBehaviour
 
     private string GetFilePath(int index)
     {
+        Debug.Log(Application.persistentDataPath + " / " + _fileStart + index.ToString() + _fileEnd);
         return Application.persistentDataPath + "/" + _fileStart + index.ToString() + _fileEnd;
     } 
 }
