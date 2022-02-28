@@ -25,6 +25,11 @@ public class CubePlacement : MonoBehaviour
 
     private Transform temp;
 
+    private void Awake()
+    {
+        SpawnAction = new MoveCubes();
+    }
+
     void Start()
     {
         _currentCubePrefab = _prefabRedCube;
@@ -33,7 +38,6 @@ public class CubePlacement : MonoBehaviour
 
     private void OnEnable()
     {
-        SpawnAction = new MoveCubes();
         SpawnAction.SpawnCube.spawncube.Enable();
         SpawnAction.SpawnCube.spawncube.performed += SpawnACube;
         SpawnAction.SpawnCube.rotate.Enable();
@@ -45,6 +49,8 @@ public class CubePlacement : MonoBehaviour
     private void OnDisable()
     {
         SpawnAction.SpawnCube.spawncube.Disable();
+        SpawnAction.SpawnCube.rotate.Disable();
+        SpawnAction.SpawnCube.change.Disable();
     }
 
     void Update()

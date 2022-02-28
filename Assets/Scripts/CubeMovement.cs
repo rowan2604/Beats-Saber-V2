@@ -18,10 +18,12 @@ public class CubeMovement : MonoBehaviour
     private MoveCubes _moveCubesInputAction;
     private float _sensMovement = 1;
     private bool _isplayLevel;
+    private Vector3 _startpos;
     private void Awake()
     {
         instance = this;
         _moveCubesInputAction = new MoveCubes();
+        _startpos = transform.position;
     }
 
     private void OnEnable()
@@ -57,8 +59,8 @@ public class CubeMovement : MonoBehaviour
             _sensMovement = 1;
         else
             _sensMovement = -1;
-
-        transform.position = transform.position - new Vector3(0, 0, _sensMovement * DeplacementSpeed * 5 * Time.deltaTime);
+        if(transform.position.z > _startpos.z)
+            transform.position = transform.position - new Vector3(0, 0, _sensMovement * DeplacementSpeed * 5 * Time.deltaTime);
     }
 
 
