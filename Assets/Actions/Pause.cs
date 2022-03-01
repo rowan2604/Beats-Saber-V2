@@ -41,7 +41,7 @@ public partial class @Pause : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""adfe6047-fb18-49ae-92c2-dae1ed6c4cff"",
-                    ""path"": ""<XRController>{RightHand}/home"",
+                    ""path"": ""<XRController>{RightHand}/menu"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

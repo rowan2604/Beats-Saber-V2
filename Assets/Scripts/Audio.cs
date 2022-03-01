@@ -83,7 +83,7 @@ public class Audio : MonoBehaviour
             _instance._isPlaying = false;
             CubeMovement.PlayingLevel(false);
         }
-        else if (_instance._inPause)
+        else if (_instance._isPlaying && _instance._inPause)
         {
             _instance._audioSource.UnPause();
             _instance._inPause = false;

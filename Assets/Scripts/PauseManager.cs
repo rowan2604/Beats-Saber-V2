@@ -30,7 +30,6 @@ public class PauseManager : MonoBehaviour
         _pauseUI.SetActive(true);
         _blocks.SetActive(false);
         Audio.Pause(context);
-        CubeMovement.PlayingLevel(false);
     }
 
     public void ResumeGame()
@@ -38,7 +37,6 @@ public class PauseManager : MonoBehaviour
         _pauseUI.SetActive(false);
         _blocks.SetActive(true);
         Audio.Pause(new InputAction.CallbackContext());
-        CubeMovement.PlayingLevel(true);
     }
 
     public void BackToMenu()
