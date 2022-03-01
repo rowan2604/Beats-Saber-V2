@@ -18,7 +18,7 @@ public class Saber : MonoBehaviour
         Debug.Log(collider.gameObject.name);
         if (color != collider.GetComponent<Cube>().color)
         {
-            //Debug.Log("Mauvaise couleur");
+            Debug.Log("Mauvaise couleur");
             return;
         }
         Vector3 cubeCenter = collider.transform.position;
@@ -30,16 +30,14 @@ public class Saber : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             if (ValidHit(hitPoint, faceCenter, (int)collider.transform.rotation.z))
             {
-                //Debug.Log($"Good Hit with saber {color}!");
+                Debug.Log($"Good Hit with saber {color}!");
             }
             else
-                Debug.Log("fdp");
+                Debug.Log("raté");
             Destroy(collider.gameObject);
-            //Debug.Log("destroy " + collider.gameObject.name);
         }
-        
-
-            //Debug.Log("Erreur : le sabre n'intersecte pas le plan du cube");
+        else
+            Debug.Log("Erreur : le sabre n'intersecte pas le plan du cube");
     }
 
     private bool ValidHit(Vector3 hitPoint, Vector3 faceCenter, int rotation)
@@ -47,7 +45,6 @@ public class Saber : MonoBehaviour
         bool horizontal = Mathf.Abs(hitPoint.x - faceCenter.x) > Mathf.Abs(hitPoint.y - faceCenter.y);
         if (horizontal)
         {
-            Debug.Log("horizontal");
             if (!(rotation / 90 % 2 == 1))
                 return false;
             bool left = hitPoint.x < faceCenter.x;
@@ -55,7 +52,6 @@ public class Saber : MonoBehaviour
         }
         else
         {
-            Debug.Log("vertical");
             if (!(rotation / 90 % 2 == 0))
                 return false;
             bool bottom = hitPoint.y < faceCenter.y;

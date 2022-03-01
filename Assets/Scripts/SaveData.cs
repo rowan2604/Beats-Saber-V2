@@ -65,17 +65,12 @@ public class SaveData : MonoBehaviour
 
     private void DeleteOldSave()
     {
-        int index = 0;
+        var existingFiles = Directory.GetFiles(Application.dataPath + "/SaveFolder");
 
-        while (!_EndOfCubes)
+        for (int i = 0; i < existingFiles.Length; i++)
         {
-            string json = ReadFromFile(index);
-
-            if (json != "")
-                File.Delete(GetFilePath(index));
+            File.Delete(existingFiles[i]);
         }
-
-        _EndOfCubes = false;
     }
 
     public void LoadJson()
