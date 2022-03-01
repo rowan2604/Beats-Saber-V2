@@ -9,10 +9,11 @@ public class Main : MonoBehaviour
         Playing
     }
     [SerializeField] private LevelType _levelType;
-    public static LevelType CurrentLevelType => _instance._levelType;
+    public static LevelType CurrentLevelType;
 
     private void Awake()
     {
+        CurrentLevelType = _levelType;
         if (_instance == null)
             _instance = this;
         else
