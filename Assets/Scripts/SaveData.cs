@@ -49,6 +49,8 @@ public class SaveData : MonoBehaviour
 
     public void SaveIntoJson()
     {
+        DeleteOldSave();
+
         RetrieveCubeData();
         string json = string.Empty;
         int index = 0;
@@ -59,6 +61,21 @@ public class SaveData : MonoBehaviour
             WriteToFile(index, json);
             index++;
         }
+    }
+
+    private void DeleteOldSave()
+    {
+        int index = 0;
+
+        while (!_EndOfCubes)
+        {
+            string json = ReadFromFile(index);
+
+            if (json != "")
+                File.Delete(GetFilePath(index));
+        }
+
+        _EndOfCubes = false;
     }
 
     public void LoadJson()
@@ -128,8 +145,7 @@ public class SaveData : MonoBehaviour
 
     private string GetFilePath(int index)
     {
-        Debug.Log(Application.persistentDataPath + " / " + _fileStart + index.ToString() + _fileEnd);
-        return Application.persistentDataPath + "/" + _fileStart + index.ToString() + _fileEnd;
+        return Application.dataPath + "/SaveFolder/" + _fileStart + index.ToString() + _fileEnd;
     } 
 }
 
