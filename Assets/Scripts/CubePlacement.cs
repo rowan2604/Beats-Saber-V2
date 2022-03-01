@@ -23,8 +23,6 @@ public class CubePlacement : MonoBehaviour
     private Transform _currentPlacementPoint;
     private float _lastRotation = 0f;
 
-    private InputActionReference _rotateAction;
-
     private Transform temp;
 
     private void Awake()
@@ -65,9 +63,6 @@ public class CubePlacement : MonoBehaviour
             _currentSelectedCube = Instantiate(_currentCubePrefab, _currentPlacementPoint.position, 
                 Quaternion.Euler(Vector3.forward * _lastRotation));
             _currentSelectedCube.transform.SetParent(_allCubes);
-            Color color = _currentSelectedCube.GetComponent<MeshRenderer>().material.color;
-            color.a = 0.2f;
-            _currentSelectedCube.GetComponent<MeshRenderer>().material.color = color;
         }
     }
 
@@ -103,10 +98,6 @@ public class CubePlacement : MonoBehaviour
     {
         if (_currentSelectedCube?.GetComponent<Cube>().Collide == false)
         {
-            Color color = _currentSelectedCube.GetComponent<Renderer>().material.color;
-            color.a = 1f;
-            _currentSelectedCube.GetComponent<Renderer>().material.color = color;
-
             _currentSelectedCube.transform.SetParent(_cubesParent);
             _currentSelectedCube = null;
         }
@@ -127,5 +118,9 @@ public class CubePlacement : MonoBehaviour
             _currentCubePrefab = _prefabRedCube;
         else
             _currentCubePrefab = _prefabBlueCube;
+        Destroy(_currentSelectedCube);
+        _currentSelectedCube = Instantiate(_currentCubePrefab, _currentPlacementPoint.position,
+            Quaternion.Euler(Vector3.forward * _lastRotation));
+        _currentSelectedCube.transform.SetParent(_allCubes);
     }
 }
