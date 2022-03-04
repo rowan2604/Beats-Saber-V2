@@ -14,15 +14,15 @@ Dans la scène d'édition, le joueur dispose des 2 manettes VR pour construire l
 
 La manette de droite est liée à la disposition des blocs et a pour fonctionnalités de :
 
-    - Poser des blocs sur l'un des différents emplacements prévus par le GD (boutton trigger - pression)
-    - Changer la couleur du bloc actuel (Grip - pression)
-    - Changer la rotation du bloc actuel (Touchpad - glisser)
+  - Poser des blocs sur l'un des différents emplacements prévus par le GD (boutton trigger - pression)
+  - Changer la couleur du bloc actuel (Grip - pression)
+  - Changer la rotation du bloc actuel (Touchpad - glisser)
 
 La manette de gauche est celle liée à la musique et au niveau, elle permet entre autres de :
 
-    - Lancer la musique à partir de l'emplacement actuel de la grille de placement des cubes (bouton trigger - pression)
-    - Stopper la musique (Grip - pression)
-    - Visualiser le niveau en avancant/reculant permettant ainsi d'avoir une projection des cubes en fonction de la musique (Touchpad - glisser)
+  - Lancer la musique à partir de l'emplacement actuel de la grille de placement des cubes (bouton trigger - pression)
+  - Stopper la musique (Grip - pression)
+  - Visualiser le niveau en avancant/reculant (Touchpad - glisser)
     
 Il est également possible pour le joueur de mettre en pause et d'afficher un menu en utilisant la touche menu sur n'importe laquelle des manettes.
 
